@@ -8,36 +8,41 @@
   },
   "scripts": {
     "clean": "rimraf dist && rimraf coverage",
-    "build": "npm run compile && npm run copy:html && npm run bundle && npm run minify",
+    "build": "npm run copy:html && npm run bundle",
+    "build:watch": "npm run copy:html && rollup -c rollup.config.js -w",
     "compile": "tsc",
     "copy:html": "cpx src/**.html dist",
     "test": "karma start",
-    "bundle": "rollup -c",
+    "bundle": "rollup -c rollup.config.js",
     "minify": "uglifyjs dist/example-plugin-bundle.js --output dist/example-plugin-bundle.min.js --source-map \"filename='dist/example-plugin-bundle.min.js.map',url='example-plugin-bundle.min.js.map',content='dist/example-plugin-bundle.js.map'\""
   },
   "author": "Georg Wittberger <georg.wittberger@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "jquery": "~3.3.1"
+    "jquery": "~3.6.0"
   },
   "devDependencies": {
-    "@types/jasmine": "~2.8.7",
-    "@types/jquery": "~3.3.1",
+    "@rollup/plugin-node-resolve": "^13.0.6",
+    "@rollup/plugin-replace": "^3.0.0",
+    "@rollup/plugin-typescript": "^8.3.0",
+    "@types/jasmine": "~3.10.1",
+    "@types/jquery": "~3.5.8",
     "babel-core": "~6.26.3",
     "babel-plugin-external-helpers": "~6.22.0",
     "babel-preset-env": "~1.7.0",
     "cpx": "~1.5.0",
-    "jasmine-core": "~3.1.0",
-    "karma": "~2.0.2",
-    "karma-jasmine": "~1.1.2",
+    "jasmine-core": "~3.10.1",
+    "karma": "~6.3.6",
+    "karma-jasmine": "~4.0.1",
     "karma-phantomjs-launcher": "~1.0.4",
     "karma-phantomjs-shim": "~1.5.0",
-    "karma-typescript": "~3.0.12",
-    "rimraf": "~2.6.2",
-    "rollup": "~0.58.2",
-    "rollup-plugin-babel": "~3.0.4",
-    "rollup-plugin-sourcemaps": "~0.4.2",
-    "typescript": "~2.8.3",
-    "uglify-js": "~3.3.24"
+    "karma-typescript": "~5.5.2",
+    "rimraf": "~3.0.2",
+    "rollup": "~2.58.3",
+    "rollup-plugin-babel": "~4.4.0",
+    "rollup-plugin-sourcemaps": "~0.6.3",
+    "rollup-plugin-terser": "^7.0.2",
+    "typescript": "~4.4.4",
+    "uglify-js": "~3.14.2"
   }
 }

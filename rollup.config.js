@@ -1,9 +1,9 @@
-import babel from 'rollup-plugin-babel';
-import sourcemaps from 'rollup-plugin-sourcemaps';
+import { terser } from 'rollup-plugin-terser';
+import typescript from '@rollup/plugin-typescript';
 
 export default {
   // Define the JavaScript file to use as the starting point for bundling.
-  input: 'dist/example-plugin.js',
+  input: 'src/example-plugin.ts',
 
   // Define the output options for the generated bundle.
   output: {
@@ -26,11 +26,7 @@ export default {
 
   // Define the plugins to use during bundling.
   plugins: [
-    // Use Babel to transpile ES2015 code for older browsers.
-    babel({
-      exclude: 'node_modules/**',
-    }),
-    // Use source maps from input files.
-    sourcemaps()
+    typescript(),
+    terser(),
   ]
 };

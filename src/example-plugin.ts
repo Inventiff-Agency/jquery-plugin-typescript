@@ -14,11 +14,11 @@ $.fn.examplePlugin = Object.assign<ExamplePluginFunction, ExamplePluginGlobalOpt
       console.error('Example plugin options are missing required parameter "outputSelector": ', JSON.stringify(options));
       return this;
     }
-
+    // JQuery.Event<HTMLElement>
     // Do what the plugin should do. Here we create an instance of the separate service which is then used when the
     // user clicks the element that the plugin is attached to. It produces a greeting message and appends it to the output.
     let exampleService = new ExampleService();
-    this.click(function (event: JQuery.Event<HTMLElement>) {
+    this.click(function (event: JQuery.ClickEvent) {
       let messageText = exampleService.getExampleMessage(event.currentTarget.textContent);
       let messageElement = $('<p>' + messageText + '</p>');
       if (options.outputColor) {
@@ -34,7 +34,7 @@ $.fn.examplePlugin = Object.assign<ExamplePluginFunction, ExamplePluginGlobalOpt
   // Define the global default options.
   {
     options: {
-      outputSelector: null
+      outputSelector: '#plannable-calculator'
     }
   }
 );
